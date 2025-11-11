@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react'
 import { ContentData, Book, Award, SocialLink } from '@/types/content'
 import { validateInput, sanitizeString } from '@/lib/security'
+import { logout } from '@/lib/auth'
 import Link from 'next/link'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 interface Version {
   filename: string
@@ -294,7 +296,8 @@ export default function Dashboard () {
   }
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50'>
+    <ProtectedRoute>
+      <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50'>
       <header className='bg-white/80 backdrop-blur-sm border-b border-gray-200/50'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
           <div className='flex justify-between items-center'>
@@ -332,6 +335,15 @@ export default function Dashboard () {
                   <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' />
                 </svg>
                 Versions ({versions.length})
+              </button>
+              <button
+                onClick={logout}
+                className='inline-flex items-center px-4 py-2 border-2 border-red-300 text-red-700 font-medium rounded-xl hover:border-red-400 hover:bg-red-50 transition-all duration-200'
+              >
+                <svg className='w-4 h-4 mr-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1' />
+                </svg>
+                Logout
               </button>
             </div>
           </div>
@@ -832,5 +844,6 @@ export default function Dashboard () {
         </form>
       </main>
     </div>
+    </ProtectedRoute>
   )
 }

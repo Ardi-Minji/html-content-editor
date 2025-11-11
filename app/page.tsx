@@ -16,7 +16,7 @@ export default function Home() {
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center mb-16'>
               <Link
-                href='/dashboard'
+                href='/login'
                 className='inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl'
               >
                 Get Started
@@ -49,7 +49,7 @@ export default function Home() {
 
           <div className='grid md:grid-cols-2 gap-8 mb-16'>
             <Link
-              href='/dashboard'
+              href='/login'
               className='group block p-8 bg-white rounded-2xl border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300'
             >
               <div className='flex items-center mb-6'>
