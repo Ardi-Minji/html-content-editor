@@ -102,22 +102,66 @@ export async function POST (request: NextRequest) {
 
 export async function GET () {
   try {
-    // Always generate HTML on the fly for faster response
+    // Get content data - use default content for Vercel, try file for local
     let data: ContentData
 
     if (isVercel) {
-      // Use default content for Vercel
-      const contentResponse = await fetch(
-        new URL('/api/content', process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
-      )
-      data = await contentResponse.json()
+      // Use default content directly for Vercel (faster)
+      const defaultContent: ContentData = {
+        authorName: 'Elena Morrison',
+        subtitle: 'Award-Winning Contemporary Fiction Author',
+        tagline: 'Stories that illuminate the extraordinary within the ordinary',
+        bioParagraph1: 'Elena Morrison is a bestselling contemporary fiction author whose work explores the intricate tapestry of human relationships, identity, and belonging in the modern world.',
+        bioParagraph2: 'Born in Seattle and raised between the Pacific Northwest and rural Ireland, Elena draws inspiration from her multicultural upbringing and background in psychology.',
+        bioParagraph3: "When she's not writing, Elena teaches creative writing workshops, mentors emerging authors, and advocates for diverse voices in literature.",
+        awards: [
+          { id: '1', title: 'National Book Award Finalist (2020)' },
+          { id: '2', title: 'Goodreads Choice Award Winner - Fiction (2019)' },
+          { id: '3', title: "Women's Prize for Fiction Longlist (2021)" },
+          { id: '4', title: 'New York Times Bestselling Author' }
+        ],
+        books: [
+          {
+            id: '1',
+            title: 'The Memory Keeper',
+            year: '2018',
+            description: 'A powerful debut about a woman who discovers a box of letters that unravel decades of family secrets.',
+            review: 'A stunning exploration of memory, loss, and the stories we tell ourselves. - The New York Times',
+            coverColor: 'navy'
+          },
+          {
+            id: '2',
+            title: 'Between Two Worlds',
+            year: '2020',
+            description: "Following a young immigrant's journey between cultures.",
+            review: "Morrison's prose sings with authenticity and grace. - The Guardian",
+            coverColor: 'gold'
+          },
+          {
+            id: '3',
+            title: 'The Last Summer',
+            year: '2022',
+            description: 'Three childhood friends reunite for one final summer.',
+            review: 'A masterclass in character development. - NPR Books',
+            coverColor: 'teal'
+          }
+        ],
+        contactEmail: 'hello@elenamorrison.com',
+        contactMessage: "Interested in booking speaking engagements or media inquiries? I'd love to hear from you.",
+        socialLinks: [
+          { platform: 'Email', url: 'mailto:hello@elenamorrison.com' },
+          { platform: 'Twitter', url: '#' },
+          { platform: 'Instagram', url: '#' }
+        ]
+      }
+      data = defaultContent
     } else {
       // Try to read from file, fallback to default
       try {
         const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8')
         data = JSON.parse(fileContent)
       } catch {
-        // Fallback to default content if file doesn't exist
+        // Use same default content as fallback
         const contentResponse = await fetch('http://localhost:3000/api/content')
         data = await contentResponse.json()
       }
@@ -127,32 +171,18 @@ export async function GET () {
     return new NextResponse(html, {
       headers: {
         'Content-Type': 'text/html',
-        'Cache-Control': 'no-cache, no-store, must-revalidate'
+        'Cache-Control': 'public, max-age=300, s-maxage=300'
       }
     })
   } catch (error) {
     console.error('Error generating HTML:', error)
     
-    // Return a basic error page instead of JSON
-    const errorHtml = `
-      <!DOCTYPE html>
-      <html>
-      <head><title>Preview Error</title></head>
-      <body style="font-family: system-ui; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f9fafb;">
-        <div style="text-align: center; padding: 2rem;">
-          <h1 style="color: #ef4444;">Preview Error</h1>
-          <p style="color: #6b7280;">Unable to generate preview. Please try again.</p>
-          <button onclick="window.location.reload()" style="background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem; cursor: pointer;">Retry</button>
-        </div>
-      </body>
-      </html>
-    `
+    // Return a basic error page
+    const errorHtml = `<!DOCTYPE html><html><head><title>Preview Error</title></head><body style="font-family: system-ui; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f9fafb;"><div style="text-align: center; padding: 2rem;"><h1 style="color: #ef4444;">Preview Error</h1><p style="color: #6b7280;">Unable to generate preview. Please try again.</p><button onclick="window.location.reload()" style="background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem; cursor: pointer;">Retry</button></div></body></html>`
     
     return new NextResponse(errorHtml, {
-      headers: {
-        'Content-Type': 'text/html'
-      },
-      status: 200 // Return 200 so the preview can display the error page
+      headers: { 'Content-Type': 'text/html' },
+      status: 200
     })
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "html-content-editor",
   "version": "1.0.0",
-  "description": "",
+  "description": "HTML Content Editor with modern dashboard design",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -9,21 +9,24 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["html", "editor", "cms", "dashboard"],
+  "author": "Ardi-Minji",
   "license": "ISC",
   "dependencies": {
-    "next": "^16.0.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.17",
-    "@types/node": "^24.10.0",
-    "@types/react": "^19.2.2",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5.9.3"
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": ">=18.17.0"
   }
 }

@@ -60,7 +60,7 @@ export default function Preview () {
     } catch (err) {
       console.error('Preview error:', err)
       
-      if (err.name === 'AbortError') {
+      if (err instanceof Error && err.name === 'AbortError') {
         setHtmlContent(`
           <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #f9fafb; font-family: system-ui, -apple-system, sans-serif;">
             <div style="text-align: center; padding: 2rem;">
