@@ -1,0 +1,68 @@
+{
+  "authorName": "Charles Togle",
+  "subtitle": "Award-Winning CS student",
+  "tagline": "Stories that illuminate the extraordinary within the ordinary",
+  "bioParagraph1": "Elena Morrison is a bestselling contemporary fiction author whose work explores the intricate tapestry of human relationships, identity, and belonging in the modern world. Her novels have been praised for their emotional depth, lyrical prose, and ability to capture the nuanced complexities of everyday life.",
+  "bioParagraph2": "Born in Seattle and raised between the Pacific Northwest and rural Ireland, Elena draws inspiration from her multicultural upbringing and background in psychology. Her debut novel, The Memory Keeper, was published in 2018 to critical acclaim and became an instant bestseller.",
+  "bioParagraph3": "When she's not writing, Elena teaches creative writing workshops, mentors emerging authors, and advocates for diverse voices in literature. She currently resides in Portland with her rescue dog, Winston, where she's working on her next novel.",
+  "awards": [
+    {
+      "id": "1",
+      "title": "National Book Award Finalist (2020)"
+    },
+    {
+      "id": "2",
+      "title": "Goodreads Choice Award Winner - Fiction (2019)"
+    },
+    {
+      "id": "3",
+      "title": "Women's Prize for Fiction Longlist (2021)"
+    },
+    {
+      "id": "4",
+      "title": "New York Times Bestselling Author"
+    }
+  ],
+  "books": [
+    {
+      "id": "1",
+      "title": "The Memory Keeper",
+      "year": "2018",
+      "description": "A powerful debut about a woman who discovers a box of letters that unravel decades of family secrets and force her to confront the mother she thought she knew.",
+      "review": "A stunning exploration of memory, loss, and the stories we tell ourselves. - The New York Times",
+      "coverColor": "navy"
+    },
+    {
+      "id": "2",
+      "title": "Between Two Worlds",
+      "year": "2020",
+      "description": "Following a young immigrant's journey between cultures, this novel beautifully captures the tension between tradition and transformation, belonging and becoming.",
+      "review": "Morrison's prose sings with authenticity and grace. - The Guardian",
+      "coverColor": "gold"
+    },
+    {
+      "id": "3",
+      "title": "The Last Summer",
+      "year": "2022",
+      "description": "Three childhood friends reunite for one final summer at their beloved beach house, confronting the paths they've chosen and the dreams they've abandoned.",
+      "review": "A masterclass in character development and emotional resonance. - NPR Books",
+      "coverColor": "teal"
+    }
+  ],
+  "contactEmail": "hello@elenamorrison.com",
+  "contactMessage": "Interested in booking speaking engagements, media inquiries, or just want to say hello? I'd love to hear from you.",
+  "socialLinks": [
+    {
+      "platform": "Email",
+      "url": "mailto:hello@elenamorrison.com"
+    },
+    {
+      "platform": "Twitter",
+      "url": "#"
+    },
+    {
+      "platform": "Instagram",
+      "url": "#"
+    }
+  ]
+}
